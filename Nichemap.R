@@ -94,17 +94,20 @@ melted_cormat <- melt(lower_tri, na.rm = TRUE)
 
 # write.csv(melted_cormat, file="C:/~your_path/rho-spearman.csv", row.names = F)
 
-# Check Significance of the Coefficients:
+# Check Significance of the Coefficients (using all genera):
+
+cormatall <- cor(datai[,5:86], method = c("spearman"))
+dim(cormatall)
 
 require(Hmisc)
-coefp <- rcorr(as.matrix(cormat), type=c("spearman"))
+coefp <- rcorr(as.matrix(cormatall), type=c("spearman"))
 myPval <- coefp$P
 # View(myPval)
 
 # You may write the p-values:
-# write.csv(myPval, file="C:/~your_path/p-Spearman.csv", row.names = F)
-# or:
-# write.csv(coefp[["P"]], file="C:/~your_path/p-Spearman.csv", row.names = F)
+# write.csv(myPval, file="C:/~your_path/p-Spearman.csv", row.names = T)
+# alternative:
+# write.csv(coefp[["P"]], file="C:/~your_path/p-Spearman.csv", row.names = T)
 
 
 ##############################################################
@@ -214,25 +217,43 @@ p <- ggplot(data=mycobiome.plot, aes(MDS1,MDS2)) + theme_classic() +
   theme_classic() +
   geom_segment(data=arrow.p, aes(x=0, y=0, xend=NMDS1, yend=NMDS2, lty = Agronomic_Factors), arrow=arrow(length=unit(.99, "cm")*arrow.p$R), colour = "blue", size = 0.3, alpha = 1) ##add arrows (scaled by R-squared value)
 
-# Fumonisin-B1 use:
-set.seed(07)
-p + theme(legend.position = "right", text = element_text(size = 12), axis.title = element_text(size = 13),
-          axis.text = element_text(size = 10)) + annotate("text", x=(1.1), y=(-0.5), label=paste('Stress =',round(mycobiomeMDS$stress,3))) +
+# MDS for Fumonisin-B1:
+set.seed(79)
+mdsFB1 <- p + theme(legend.position = "right", text = element_text(size = 12), axis.title = element_text(size = 13),
+                    axis.text = element_text(size = 10)) + annotate("text", x=(1.1), y=(-0.5), label=paste('Stress =',round(mycobiomeMDS$stress,3))) +
   annotate("text", x=(-1.1), y=(0.35), label=paste('early')) + annotate("text", x=(1.2), y=(0.5), label=paste('late')) +
   annotate("text", x=(-0.2), y=(-1.1), label=paste('pest')) + annotate("text", x=(0.3), y=(-1.1), label=paste('med')) +
   labs(title = expression(paste("b) MDS of Agronomic Factors that may Influence FB1 levels in Maize")))+
   theme(title =element_text(size=10))
+mdsFB1
 
-# For fusarium subsitute FBlevel with "Fus_Level" in "geom_point()" and "stat_ellipse()" above, and use:
-p + theme(legend.position = "right", text = element_text(size = 12), axis.title = element_text(size = 13),
-          axis.text = element_text(size = 10)) + annotate("text", x=(1.2), y=(-0.5), label=paste('Stress =',round(mycobiomeMDS$stress,3))) +
+
+set.seed(07) # run each time for reproducible coordinates
+p <- ggplot(data=mycobiome.plot, aes(MDS1,MDS2)) + theme_classic() +
+  geom_point(data=mycobiome.plot, aes(MDS1, MDS2, color=Fus_Level), position=position_jitter(1)) +##separates overlapping points
+  stat_ellipse(aes(fill=Fus_Level), alpha=0.25,type='t',size = 1, segments = 360, level = 0.67, geom="polygon", show.legend = NA) +##changes shading on ellipses
+  theme_classic() +
+  geom_segment(data=arrow.p, aes(x=0, y=0, xend=NMDS1, yend=NMDS2, lty = Agronomic_Factors), arrow=arrow(length=unit(.99, "cm")*arrow.p$R), colour = "blue", size = 0.3, alpha = 1) ##add arrows (scaled by R-squared value)
+
+
+# MDS for Fusarium:
+set.seed(79)
+mdsFus <- p + theme(legend.position = "right", text = element_text(size = 12), axis.title = element_text(size = 13),
+                    axis.text = element_text(size = 10)) + annotate("text", x=(1.2), y=(-0.5), label=paste('Stress =',round(mycobiomeMDS$stress,3))) +
   annotate("text", x=(-1.1), y=(0.35), label=paste('early')) + annotate("text", x=(1.2), y=(0.5), label=paste('late')) +
   annotate("text", x=(-0.2), y=(-1.1), label=paste('pest')) + annotate("text", x=(0.3), y=(-1.1), label=paste('med')) +
   labs(title = expression(paste("a) MDS of Agronomic Factors that may Influence", italic(" Fusarium"), " Abundance in Maize"))) +
   theme(title =element_text(size=10))
- 
+mdsFus
+
 # Note6: You may change R values in "arrow.p" above to filter off certain agronomic factors as needed.
 
+# Two-in-one plot:
+
+require(patchwork)
+set.seed(79)
+mdsFus / mdsFB1 +
+  plot_layout(heights = c(2,2))
  ######################################################
  # Influence of fungal genus abundance on FB1 levels ##
  ######################################################
