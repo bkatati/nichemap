@@ -7,10 +7,10 @@
 # Section - [A]
 
 #Retrieval of Internal Mycobiome Amplicon Sequence Variants (ASVs) from phyloseq object:
-
+require(phyloseq)
 require(plyr)
-ps <- readRDS("https://github.com/bkatati/nichemap/blob/main/phyloseq.rds")
-# NB: if file path error occurs, download rds file "phyloseq" from site ""https://github.com/bkatati/nichemap" 
+ps <- readRDS(url("https://github.com/bkatati/nichemap/blob/main/phyloseq.rds"))
+# NB: if file error occurs, download rds file "phyloseq" from site ""https://github.com/bkatati/nichemap" 
 # On your PC, create appropriate local drive path for the file and change above file path.
 
 psg0 <- tax_glom(ps, "Genus")
@@ -35,8 +35,8 @@ head(mycobiome)
 
 # INTERNAL MYCOBIOME CENSUS - AMPLICON SEQUENCE VARIANTS:
 
-# datai <- read.csv("https://github.com/bkatati/nichemap/blob/main/InternoBiome.csv")
-# NB: if file path error occurs, download csv file "InternoBiome.csv" from site ""https://github.com/bkatati/nichemap" 
+datai <- read.csv(url("https://github.com/bkatati/nichemap/blob/main/InternoBiome.csv"))
+# NB: if file error occurs, download csv file "InternoBiome.csv" from site ""https://github.com/bkatati/nichemap" 
 # On your PC, create appropriate local drive path for the file and change above file path.
 ##########
 
@@ -168,8 +168,8 @@ hm + theme(axis.text = element_text(face = "italic"))
 #############################################################
 
 # Read the dataframe of agronomic factors
-mycobiome<-read.csv("https://github.com/bkatati/nichemap/blob/main/dataframe_FusB1.csv")
-# NB: if file path error occurs, download csv file "dataframe_FusB1.csv" from site "https://github.com/bkatati/nichemap" 
+mycobiome<-read.csv(url("https://github.com/bkatati/nichemap/blob/main/dataframe_FusB1.csv"))
+# NB: if file error occurs, download csv file "dataframe_FusB1.csv" from site "https://github.com/bkatati/nichemap" 
 # On your PC, create appropriate local drive path for the file and change above file path.
 
 head(mycobiome)
@@ -260,8 +260,8 @@ mdsFus / mdsFB1 +
 
 # [a] Spearman rank correlation rho of genera relative abundances against FB1:
 
-Corr <- read.csv("https://github.com/bkatati/nichemap/blob/main/Spearman.csv")
-# NB: if file path error occurs, download csv file "Spearman.csv" from site "https://github.com/bkatati/nichemap" 
+Corr <- read.csv(url("https://github.com/bkatati/nichemap/blob/main/Spearman.csv"))
+# NB: if file error occurs, download csv file "Spearman.csv" from site "https://github.com/bkatati/nichemap" 
 # On your PC, create appropriate local drive path for the file and change above file path.
 
 head(Corr)
@@ -282,9 +282,9 @@ Spear3
 ## SUPPLEMENTAL DATA S3 - Fusarium v Sarocladium, External Mycobiome ##
 #######################################################################
 
-Corr2 <- read.csv("https://github.com/bkatati/nichemap/blob/main/S3_ExternoBiome.csv")
+Corr2 <- read.csv(url("https://github.com/bkatati/nichemap/blob/main/S3_ExternoBiome.csv"))
 
-# NB: if file path error occurs, download csv file "ExternoBiome.csv" from site "https://github.com/bkatati/nichemap" 
+# NB: if file error occurs, download csv file "ExternoBiome.csv" from site "https://github.com/bkatati/nichemap" 
 # On your PC, create appropriate local drive path for the file and change above file path.
 
 head(Corr2)
