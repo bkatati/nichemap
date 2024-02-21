@@ -43,7 +43,7 @@ datai <- read.csv(url("https://github.com/bkatati/nichemap/blob/main/InternoBiom
 # Section - [B]
 
  ######################################################
- # SUPPLEMENTAL TABLE S2 - Correlation Coefficients ###
+ # SUPPLEMENTAL TABLE S1 - Correlation Coefficients ###
  ######################################################
  
 # Fungal General Relative Abundance Correlations
@@ -53,7 +53,7 @@ head(datai)
 dim(datai)
 
 # Note1: to create the the Spearman Correlation Matrix (Figure 2), skip 'databi' below" and go to # CORRELATION MATRIX."
-# Note2: to generate the Spearman Correlation Coefficients per district (Supplemental Table S2) use the 'Subset Section'
+# Note2: to generate the Spearman Correlation Coefficients per district (Supplemental Table S1) use the 'Subset Section'
 # in the string before proceeding to # CORRELATION MATRIX" e.g:
 # "District = Livingstone," will generate coefficients for Livingstone as a sampled district:
 
@@ -90,7 +90,7 @@ lower_tri
 # Melt the correlation matrix to drop 'NA'
 melted_cormat <- melt(lower_tri, na.rm = TRUE)
 
-# Write the correlation coefficients for Supplemental Table S2:
+# Write the correlation coefficients for Supplemental Table S1:
 
 # write.csv(melted_cormat, file="C:/~your_path/rho-spearman.csv", row.names = F)
 
@@ -279,10 +279,10 @@ Spear3 <- cor.test(x=Corr$FusGib, y=Corr$FB1, method = "spearman")
 Spear3
 
 #######################################################################
-## SUPPLEMENTAL DATA S3 - Fusarium v Sarocladium, External Mycobiome ##
+## SUPPLEMENTAL DATA S1 - Fusarium v Sarocladium, External Mycobiome ##
 #######################################################################
 
-Corr2 <- read.csv(url("https://github.com/bkatati/nichemap/blob/main/S3_ExternoBiome.csv"))
+Corr2 <- read.csv(url("https://github.com/bkatati/nichemap/blob/main/S1_ExternoBiome.csv"))
 
 # NB: if file error occurs, download csv file "ExternoBiome.csv" from site "https://github.com/bkatati/nichemap" 
 # On your PC, create appropriate local drive path for the file and change above file path.
