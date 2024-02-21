@@ -27,6 +27,6 @@ contains the questionnaire matrix and dataframe for the agronomic factors (Pest_
 
 is dataframe for agronomic factors (Pest_incidence; No_crop_rotation; No_field_burning; Seed maturing) with potential influence on *Fusarium* relative abundance and FB1 and has been derived from step ‘iv’ above. (See manuscript's Materials and Methods on ordination of *Fusarium* / FB1 levels).
 
-# vi) "*S3_ExternoBiome.csv*"
+# vi) "*S1_ExternoBiome.csv*"
 
-contains part of external mycobiome data based on 2018/2019 cropping season from the previous study (Katati et. al., 2023, Doi: 10.1128/aem.00078-23). This is for simulation of the correlation of *Sarocladium* (sar) with *Fusarium* (fus). S1 refers to southerly (dry) agro-ecological Zone of Zambia under the 2018/2019 cropping season, whereas N1 refers to northerly (wet) agro-ecological zone under the same cropping season. The simulation is done in R code "Nichemap" under section "Supplemental Data S3."
+contains part of external mycobiome data based on 2018/2019 cropping season from the previous study (Katati et. al., 2023, Doi: 10.1128/aem.00078-23). This is for simulation of the correlation of *Sarocladium* (sar) with *Fusarium* (fus). S1 refers to southerly (dry) agro-ecological Zone of Zambia under the 2018/2019 cropping season, whereas N1 refers to northerly (wet) agro-ecological zone under the same cropping season. The simulation is done in R code "Nichemap" under section "Supplemental Data S1."
