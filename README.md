@@ -1,6 +1,7 @@
 # Title:
 # Niche Partitioning Association of Fungal Genera Correlated with Lower _Fusarium_ and Fumonisin-B1 levels in Maize
-(Nichemapping of Fusarium antagonists for Peer Review)
+
+DOI:  10.1007/s10526-024-10249-2
 
 Support files to manuscript:
 
